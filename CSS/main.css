@@ -8,17 +8,17 @@ h1 {
   color: #006B9F;
 }
 .board{
-  height: 850px;
-  width: 850px;
+  height: 350px;
+  width: 370px;
   background-color: #006B9F;
   margin-left: auto;
   margin-right: auto;
   border-radius: 3%;
 }
-.circle {
+.row {
   display: inline-block;
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 50px;
   border: solid 1px black;
   border-radius: 100%;
   background-color: #BBFFFF;
@@ -27,4 +27,12 @@ h1 {
   height: 30px;
   width: 70px;
   border-radius: 10%;
+}
+.empty-column {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border: solid 1px black;
+  border-radius: 100%;
+  background-color: #BBFFFF;
 }
