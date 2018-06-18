@@ -14,28 +14,21 @@ const $changeBackground = (event) => {
 const $circle = $('.circle');
 const makeBoard = () => {
   for (let row = 1; row <= 7; row++) {
-  let $row = $('<div>');
-  $('.board').append($row);
-  $row.addClass('row');
-  $row.attr('rowNumber', row);
-  for (let column = 1; column <= 6; column++) {
-    let $column = $('<div>');
-    $row.append($column);
-    $column.addClass('empty-column');
-    $column.attr('columnNumber', column);
-    const $cell = $('<div>');
-      $cell.addClass('column')
-      $cell.addClass('none')
-      $cell.attr('rowNumber', row)
-      $cell.attr('columnNumber', column)
-      $cell.on('click', $changeBackground);
-      $row.append($cell);
+    let $row = $('<div>');
+    $row.addClass('row');
+    $row.attr('rowNumber', row);
+    for (let column = 1; column <= 6; column++) {
+      let $column = $('<div>');
+      $row.append($column);
+      $column.addClass('empty-column');
+      $column.attr('rowNumber', row)
+      $column.attr('columnNumber', column);
+      $column.on('click', $changeBackground)
+      $row.append($column);
     }
+    $('.board').append($row);
   }
 }
-
-
-
 
 $(() => {
 makeBoard();
