@@ -1,14 +1,19 @@
+//Changes the class of the circle which adds a new background color
 let alternate = true;
 const $changeBackground = (event) => {
   const $clickedCircle = $(event.target)
   console.log('executing background changeBackground')
+//Alternates between the two colors
   if (alternate === true) {
+    $clickedCircle.removeClass('empty-column')
     $clickedCircle.addClass('orange');
     alternate = false;
   } else {
+    $clickedCircle.removeClass('empty-column')
     $clickedCircle.addClass('green');
     alternate = true
   }
+  checkWinner($clickedCircle);
 }
 //make a board
 const $circle = $('.circle');
@@ -29,6 +34,18 @@ const makeBoard = () => {
     $('.board').append($row);
   }
 }
+// let currentRow = 0;
+const checkWinner = ($clickedCircle) => {
+  console.log('starting checkWinner');
+  console.log($clickedCircle.attr('rowNumber'));
+  let currentRow = $clickedCircle.attr('rowNumber');
+  let currentCol = $clickedCircle.attr('columnNumber');
+  // currentCol++
+  $(`div[rownumber=${currentRow}][columnnumber=${currentCol}]`)
+  console.log(`My row number is  ${currentRow}`)
+  console.log(`My column number is  ${currentCol}`)
+}
+
 
 $(() => {
 makeBoard();
