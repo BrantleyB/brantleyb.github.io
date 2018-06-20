@@ -37,7 +37,7 @@ const makeBoard = () => {
 // let currentRow = 0;
 const checkWinner = () => {
   checkVerticalWinner();
-  // checkHorizontalWinner();
+  checkHorizontalWinner();
 }
 //   // console.log('starting checkWinner');
 //   // console.log($clickedCircle.attr('rowNumber'));
@@ -81,25 +81,29 @@ const checkVerticalWinner = () => {
   }
 }
 
-// const checkHorizontalWinner = () => {
-//   for (let row = 1; row <= 7; row++) // Outer loop, goes through rows
-//   {
-//     for (let column = 1; column <=4; column++) // Inner loop, goes through the columns (individual circle)
-//     {
-//       let currentCircle = $(`div[rownumber=${row}][columnnumber=${column}]`).attr('class');
-//       let circle2 = $(`div[rownumber=${row}][columnnumber=${column+2}]`).attr('class');
-//       let circle3 = $(`div[rownumber=${row}][columnnumber=${column+3}]`).attr('class');
-//       let circle4 = $(`div[rownumber=${row}][columnnumber=${column+4}]`).attr('class');
-//       if ((currentCircle === circle2) && (currentCircle === circle3) && (currentCircle === circle4) && currentCircle != 'empty') {
-//         if (alternate == true) {
-//           alert('Green Wins')
-//         } else {
-//           alert('Orange Wins');
-//         }
-//       }
-//     }
-//   }
-// }
+const checkHorizontalWinner = () => {
+  for (let row = 1; row <= 6; row++) // Outer loop, goes through rows
+  {
+    for (let column = 1; column <=4; column++) // Inner loop, goes through the columns (individual circle)
+    {
+      let currentCircle = $(`div[rownumber=${row}][columnnumber=${column}]`).attr('class');
+      let circle2 = $(`div[rownumber=${row}][columnnumber=${column+1}]`).attr('class');
+      let circle3 = $(`div[rownumber=${row}][columnnumber=${column+2}]`).attr('class');
+      let circle4 = $(`div[rownumber=${row}][columnnumber=${column+3}]`).attr('class');
+      console.log(currentCircle, circle2, circle3, circle4)
+      if ((currentCircle === circle2) && (currentCircle === circle3) && (currentCircle === circle4) && currentCircle != 'empty') {
+        console.log(column, row)
+        console.log('string');
+        if (alternate == true) {
+          alert('Green Wins')
+        } else {
+          alert('Orange Wins');
+        }
+      }
+    }
+  }
+}
+// $('.board').empty();
 
 $(() => {
 makeBoard();
