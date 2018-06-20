@@ -13,7 +13,7 @@ const $changeBackground = (event) => {
     $clickedCircle.addClass('green');
     alternate = true
   }
-  checkWinner($clickedCircle, 0, 0);
+  checkWinner();
 }
 //make a board
 const $circle = $('.circle');
@@ -35,25 +35,71 @@ const makeBoard = () => {
   }
 }
 // let currentRow = 0;
-const checkWinner = ($clickedCircle, row, column) => {
-  console.log('starting checkWinner');
-  console.log($clickedCircle.attr('rowNumber'));
-  let currentRow = Number($clickedCircle.attr('rowNumber'));
-  let currentCol = Number($clickedCircle.attr('columnNumber'));
-  let currentClass = $clickedCircle.attr('class');
-  let nextCircleRow = currentRow + row;
-  let nextCircleColumn = currentCol + column;
-  let $nextCircle = $(`div[rownumber=${nextCircleRow}][columnnumber=${nextCircleColumn}]`)
-  if ($nextCircle.attr('class') == currentClass){
-    console.log('same class');
-  } else {
-    console.log('no match');
+const checkWinner = () => {
+  checkVerticalWinner();
+  // checkHorizontalWinner();
+}
+//   // console.log('starting checkWinner');
+//   // console.log($clickedCircle.attr('rowNumber'));
+//   let currentRow = Number($clickedCircle.attr('rowNumber'));
+//   let currentCol = Number($clickedCircle.attr('columnNumber'));
+//   let currentClass = $clickedCircle.attr('class');
+//   let nextCircleRow = currentRow + row;
+//   let nextCircleColumn = currentCol + column;
+//   let $nextCircle = $(`div[rownumber=${nextCircleRow}][columnnumber=${nextCircleColumn}]`)
+//
+//   if ($nextCircle.attr('class') == currentClass){
+//     console.log('same class');
+//   } else {
+//     console.log('no match');
+//   }
+//   // console.log(`My row number is ${nextCircleRow}`)
+//   // console.log(`My column number is ${nextCircleColumn}`)
+//   // console.log(`My circle class is ${currentClass}`)
+
+// ($clickedCircle, 0, 1) checks left
+// ($clickedCircle, 0, -1) checks right
+// ($clickedCircle, 1, 0) checks up
+// ($clickedCircle, -1, 0) checks down
+const checkVerticalWinner = () => {
+  for (let row = 1; row <= 4; row++) // Outer loop, goes through rows
+  {
+    for (let column = 1; column <=6; column++) // Inner loop, goes through the columns (individual circle)
+    {
+      let currentCircle = $(`div[rownumber=${row}][columnnumber=${column}]`).attr('class');
+      let circle2 = $(`div[rownumber=${row+1}][columnnumber=${column}]`).attr('class');
+      let circle3 = $(`div[rownumber=${row+2}][columnnumber=${column}]`).attr('class');
+      let circle4 = $(`div[rownumber=${row+3}][columnnumber=${column}]`).attr('class');
+      if ((currentCircle === circle2) && (currentCircle === circle3) && (currentCircle === circle4) && currentCircle != 'empty') {
+        if (alternate == true) {
+          alert('Green Wins')
+        } else {
+          alert('Orange Wins');
+        }
+      }
+    }
   }
-  console.log(`My row number is ${nextCircleRow}`)
-  console.log(`My column number is ${nextCircleColumn}`)
-  console.log(`My circle class is ${currentClass}`)
 }
 
+// const checkHorizontalWinner = () => {
+//   for (let row = 1; row <= 7; row++) // Outer loop, goes through rows
+//   {
+//     for (let column = 1; column <=4; column++) // Inner loop, goes through the columns (individual circle)
+//     {
+//       let currentCircle = $(`div[rownumber=${row}][columnnumber=${column}]`).attr('class');
+//       let circle2 = $(`div[rownumber=${row}][columnnumber=${column+2}]`).attr('class');
+//       let circle3 = $(`div[rownumber=${row}][columnnumber=${column+3}]`).attr('class');
+//       let circle4 = $(`div[rownumber=${row}][columnnumber=${column+4}]`).attr('class');
+//       if ((currentCircle === circle2) && (currentCircle === circle3) && (currentCircle === circle4) && currentCircle != 'empty') {
+//         if (alternate == true) {
+//           alert('Green Wins')
+//         } else {
+//           alert('Orange Wins');
+//         }
+//       }
+//     }
+//   }
+// }
 
 $(() => {
 makeBoard();
