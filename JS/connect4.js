@@ -64,7 +64,7 @@ const checkWinner = () => {
 const checkVerticalWinner = () => {
   for (let row = 1; row <= 4; row++) // Outer loop, goes through rows
   {
-    for (let column = 1; column <=6; column++) // Inner loop, goes through the columns (individual circle)
+    for (let column = 1; column <=7; column++) // Inner loop, goes through the columns (individual circle)
     {
       let currentCircle = $(`div[rownumber=${row}][columnnumber=${column}]`).attr('class');
       let circle2 = $(`div[rownumber=${row+1}][columnnumber=${column}]`).attr('class');
